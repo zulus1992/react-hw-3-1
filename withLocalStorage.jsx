@@ -10,7 +10,7 @@ export function withLocalStorage(Component, storageKey) {
 
     render() {
       return (
-          <Component value={this.props.value} onChange={value => this.onChange(value)} />
+          <Component value={this.props.value} onChange={value => this.onChange(value)} {...this.props}/>
       );
     }
   };

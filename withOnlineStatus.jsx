@@ -2,7 +2,6 @@ import React from "react";
 
 export function withOnlineStatus(Component) {
   return class extends React.Component {
-    inputRef = React.createRef();
     state = {
       isOnline: window.navigator.onLine
     };
@@ -26,7 +25,7 @@ export function withOnlineStatus(Component) {
 
     render() {
       return (
-          <Component isOnline={this.state.isOnline}/>
+          <Component {...this.props} isOnline={this.state.isOnline}/>
       );
     }
   };
