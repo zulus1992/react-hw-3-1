@@ -1,27 +1,20 @@
 import React from "react";
+import Nanobar from "nanobar";
 
-const SCRIPT_SRC = "https://www.youtube.com/iframe_api";
-
-class ProgressBar extends React.Component {
-
-  state = {
-    percentage: 0
-  };
+export class ProgressBar extends React.Component {
+  nanobar = null;
+  ref = React.createRef();
+  componentDidMount() {
+    this.nanobar = new Nanobar({
+      target: this.ref.current,
+    });
+  }
+  
+  componentDidUpdate() {
+    this.nanobar.go(this.props.percentage);
+  }
 
   render() {
-    console.log(this.state.percentage);
-    return (
-      <div>
-        <button
-          onClick={() => this.setState(({ percentage }) => ({ percentage: percentage - 1 }))}>
-          Dec
-</button>
-        <ProgressBar percentage={this.state.percentage} />
-        <button
-          onClick={() => this.setState(({ percentage }) => ({ percentage: percentage + 1 }))}>
-          Inc
-</button>
-      </div >
-    );
-  }
+    return <div ref={this.ref} />
+  };
 }
